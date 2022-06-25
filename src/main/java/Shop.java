@@ -12,10 +12,12 @@ public class Shop implements ISell{
         this.stock = new ArrayList<>();
     }
 
-    @Override
-    public double calculateMarkup() {
-        return 0;
-    }
+//    @Override
+//    public double calculateMarkup() {
+//        for (ISell item: this.stock) {
+//
+//        }
+//    }
 
     public int size() {
         return stock.size();
@@ -31,5 +33,20 @@ public class Shop implements ISell{
         ) {
             stock.add(item);
         }
+    }
+
+    public double getPotentialProfit(ArrayList<ISell> stock) {
+        double profit = 0;
+        for (ISell item: stock
+        ) {
+            profit += item.calculateMarkup();
+
+        }
+        return profit;
+    }
+
+    @Override
+    public double calculateMarkup() {
+        return 0;
     }
 }

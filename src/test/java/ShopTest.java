@@ -21,6 +21,9 @@ public class ShopTest {
     yamahaPiano yamahaPiano;
     yamahaPiano yamahaPiano1;
     ArrayList<ISell> newStock;
+    Stradivarius stradivarius;
+    Stradivarius stradivarius1;
+
 
 
 
@@ -28,17 +31,19 @@ public class ShopTest {
     @Before
     public void before() {
         stock = new ArrayList<>();
+        stradivarius = new Stradivarius("wood", "brown", "string", 44, "Hmmmm", 10000, 100000);
         yamahaPiano = new yamahaPiano("wood", "black", "percussion", 64, "ting", 2, 300, 500);
         taylorGuitar = new taylorGuitar("wood", "red", "string", 6, false, "twang", 100, 200);
         stock.add(taylorGuitar);
         stock.add(yamahaPiano);
+        stock.add(stradivarius);
         shop = new Shop(stock);
         shop.add(stock);
 
     }
     @Test
     public void checkShop(){
-        assertEquals(0, shop.size());
+        assertEquals(3, shop.size());
     }
 
     @Test
@@ -49,16 +54,22 @@ public class ShopTest {
         newStock.add(yamahaPiano1);
         newStock.add(taylorGuitar1);
         shop.add(newStock);
-        assertEquals(4, shop.size());
+        assertEquals(5, shop.size());
     }
 
     @Test
     public void checkCanRemoveFromStock() {
         newStock = new ArrayList<ISell>();
         newStock.add(yamahaPiano);
+        newStock.add(stradivarius1);
         shop.remove(newStock);
 
-        assertEquals(1, shop.size());
+        assertEquals(3, shop.size());
+    }
+
+    @Test
+    public void checkPotentialProfitFromStock(){
+        assertEquals(90300.0, shop.getPotentialProfit(stock), 0.0);
     }
 
 }
