@@ -21,13 +21,14 @@ public class Shop implements ISell{
         return stock.size();
     }
 
-    public void remove(taylorGuitar taylorGuitar1) {
-        stock.remove(taylorGuitar1);
+    public void remove(ArrayList<ISell> newStock) {
+        stock.remove(newStock);
     }
 
-    public void addToShopStock(ArrayList<ISell> newStock) {
+
+    public void add(ArrayList<ISell> newStock) {
         for (ISell item: newStock
-             ) {
+        ) {
             stock.add(item);
         }
     }
